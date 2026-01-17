@@ -1,0 +1,22 @@
+[
+  {
+    "id": "mi_001",
+    "title": "Heart Attack Symptoms",
+    "content": "Chest pain with sweating, nausea, left arm or jaw pain can indicate myocardial infarction and requires emergency treatment."
+  },
+  {
+    "id": "app_001",
+    "title": "Appendicitis",
+    "content": "Right lower abdominal pain with fever, nausea, and rebound tenderness suggests appendicitis."
+  },
+  {
+    "id": "pneu_001",
+    "title": "Pneumonia",
+    "content": "Fever, cough, shortness of breath, and chest discomfort may indicate pneumonia."
+  },
+  {
+    "id": "men_001",
+    "title": "Meningitis",
+    "content": "Severe headache, fever, and stiff neck are classic signs of meningitis and require urgent care."
+  }
+]
