@@ -1,0 +1,45 @@
+{
+  "name": "KnowledgeIntegrationAgent",
+  "version": "1.0",
+  "description": "Expands diagnoses into medically verified knowledge using guidelines and textbooks.",
+  "role": "Verified medical knowledge support",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "diagnoses": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    },
+    "required": ["diagnoses"]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "conditions": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "overview": { "type": "string" },
+            "common_causes": { "type": "array", "items": { "type": "string" } },
+            "risk_factors": { "type": "array", "items": { "type": "string" } },
+            "recommended_tests": { "type": "array", "items": { "type": "string" } },
+            "standard_treatment_principles": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      },
+      "medical_sources": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "source_name": { "type": "string" },
+            "type": { "type": "string", "enum": ["guideline", "textbook", "trusted_site"] }
+          }
+        }
+      }
+    }
+  }
+}
