@@ -19,10 +19,13 @@ The final output is given below.
 
 Each agent requires input according to their function, You should get the results of each agent and give as input to the other agents and should find the result effectively without hallucination.
 
+If you want to ask more questions ask 2 or 3 questions at a time and then call the respective agents.
+Get the answers from the agents and use them to produce the final output.
+
 You MUST use the provided tools (agents).
 
 ===============================
-PIPELINE YOU MUST FOLLOW
+PIPELINE YOU CAN FOLLOW
 ===============================
 
 1. Call symptom_detective_agent

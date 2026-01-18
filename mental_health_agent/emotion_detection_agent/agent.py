@@ -1,7 +1,7 @@
 from google.adk.agents.llm_agent import LlmAgent
 
-emotion_detector_agent = LlmAgent(
-    name="emotion_detector_agent",
+root_agent = LlmAgent(
+    name="emotion_detection_agent",
     model="gemini-2.5-flash",
     description=(
         """
@@ -65,5 +65,3 @@ Your job:
 """
     )
 )
-# Export as root_agent for ADK web
-root_agent = emotion_detector_agent

@@ -9,7 +9,9 @@
         "description": "The user message to analyze for emotions."
       }
     },
-    "required": ["text"]
+    "required": [
+      "text"
+    ]
   },
   "output_schema": {
     "type": "object",
@@ -27,7 +29,10 @@
         "type": "string"
       }
     },
-    "required": ["emotion", "confidence"]
+    "required": [
+      "emotion",
+      "confidence"
+    ]
   },
   "python_class": "emotion_detector_agent.EmotionDetectorAgent",
   "memory": false

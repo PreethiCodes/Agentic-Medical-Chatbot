@@ -1,6 +1,5 @@
 from google.adk.agents.llm_agent import LlmAgent
 
-# Create the crisis monitor agent
 root_agent = LlmAgent(
     name="crisis_monitor_agent",
     model="gemini-2.5-flash",
