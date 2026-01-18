@@ -1,6 +1,6 @@
 from google.adk.agents.llm_agent import LlmAgent
 
-stress_anxiety_agent = LlmAgent(
+root_agent = LlmAgent(
     name="stress_anxiety_agent",
     model="gemini-2.5-flash-lite",
     description="""
@@ -15,5 +15,3 @@ Your role:
 """
 )
 
-# Export for ADK Web
-root_agent = stress_anxiety_agent
