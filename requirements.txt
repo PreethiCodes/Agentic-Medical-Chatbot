@@ -1,4 +1,35 @@
 google-adk
 google-generativeai
-pydantic
+
+# --- OpenAI & Agents SDK ---
+openai>=1.6.0
+openai-agents>=0.1.0
+
+# --- Core utilities ---
 python-dotenv
+pydantic
+tqdm
+numpy
+
+# --- Image processing ---
+Pillow
+opencv-python
+
+# --- PDF handling ---
+pymupdf
+pdf2image
+
+# --- DICOM handling ---
+pydicom
+pylibjpeg
+pylibjpeg-libjpeg
+pylibjpeg-openjpeg
+
+# --- OCR engines ---
+paddleocr
+paddlepaddle
+pytesseract
+
+# --- Optional helpers ---
+rich
+orjson
