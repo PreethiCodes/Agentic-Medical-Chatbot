@@ -1,4 +1,6 @@
 from google.adk.agents.llm_agent import LlmAgent
+from explainability.expressible_ai.trace_manager import TraceManager
+import json
 
 root_agent = LlmAgent(
     name="clinical_reasoning_agent",
@@ -40,3 +42,32 @@ Rules:
 - Sort diagnoses by probability."""
     )
 )
+
+
+def run_clinical_reasoning(user_input):
+    # Run model
+    response = root_agent.run(user_input)
+
+    # Detect question mode vs JSON mode
+    try:
+        output = json.loads(response)
+
+        differential = output.get("differential_diagnosis", [])
+        red_flags = output.get("red_flags", [])
+        missing = output.get("missing_information", [])
+        confidence = output.get("confidence", 0.0)
+
+    except Exception:
+        # Model is asking clarification questions → no logging yet
+        return response
+
+    # Log reasoning trace
+    TraceManager.reasoning_trace(
+        symptoms="N/A (collected from symptom agent)",
+        reasoning="LLM reasoning process based on user symptoms",
+        rules=red_flags,
+        conditions=differential,
+        confidence=confidence
+    )
+
+    return output

@@ -1,0 +1,9 @@
+{
+  "step": "symptom_detection",
+  "input_text": "",
+  "symptoms_detected": [],
+  "confidence": "",
+  "method": "",
+  "evidence": "",
+  "timestamp": ""
+}

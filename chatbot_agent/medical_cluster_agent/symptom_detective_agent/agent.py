@@ -1,4 +1,6 @@
 from google.adk.agents.llm_agent import LlmAgent
+from explainability.expressible_ai.trace_manager import TraceManager
+import json
 
 root_agent = LlmAgent(
     name="symptom_detective_agent",
@@ -25,7 +27,6 @@ Behavior rules:
   → Output ONLY JSON in the format below.
 
 Final JSON format:
-
 {
   "symptoms": [
     {
@@ -48,3 +49,27 @@ Hard rules:
 """
     )
 )
+
+
+def run_symptom_detection(user_input):
+    # Run agent
+    response = root_agent.run(user_input)
+
+    # Try parsing JSON
+    try:
+        output = json.loads(response)
+        symptoms = output.get("symptoms", [])
+        missing_info = output.get("missing_information", [])
+    except:
+        # Model asked clarifying questions (not JSON) → no logging
+        return response
+
+    # Log expressible trace
+    TraceManager.symptom_trace(
+        input_text=user_input,
+        symptoms=symptoms,
+        confidence=1.0,
+        evidence="Extracted via LLM"
+    )
+
+    return output

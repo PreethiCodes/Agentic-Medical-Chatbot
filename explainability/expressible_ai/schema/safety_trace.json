@@ -1,0 +1,9 @@
+{
+  "step": "safety_filter",
+  "user_query": "",
+  "violation_detected": "",
+  "policy_triggered": "",
+  "final_action": "",
+  "confidence": "",
+  "timestamp": ""
+}
