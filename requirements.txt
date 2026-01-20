@@ -3,6 +3,9 @@ google-generativeai
 
 edge-tts
 
+geopy
+requests
+
 # --- Core utilities ---
 python-dotenv
 pydantic
