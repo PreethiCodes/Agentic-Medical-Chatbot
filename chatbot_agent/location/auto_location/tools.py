@@ -28,16 +28,19 @@ def find_nearby_hospitals(lat: float, lng: float, radius_m: int = 10000) -> str:
         if not elements:
             return "No hospitals found within 10 km."
 
-        names = []
+        results = []
         for e in elements:
-            name = e.get("tags", {}).get("name")
+            tags = e.get("tags", {})
+            name = tags.get("name")
             if name:
-                names.append(name)
+                phone = tags.get("phone") or tags.get("contact:phone") or tags.get("emergency:phone") or "N/A"
+                results.append({"name": name, "phone": phone})
 
-        if not names:
-            return "Hospitals found nearby, but names are unavailable."
+        if not results:
+            return "Hospitals found nearby, but details are unavailable."
 
-        return "Nearby hospitals (within 10 km):\n" + "\n".join(f"• {n}" for n in names[:5])
+        formatted_list = [f"• {r['name']} (Helpline: {r['phone']})" for r in results[:5]]
+        return "Nearby hospitals (within 10 km):\n" + "\n".join(formatted_list)
 
     except Exception as e:
         return f"Could not fetch nearby hospitals: {e}"

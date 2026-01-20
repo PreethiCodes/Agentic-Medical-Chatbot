@@ -13,6 +13,8 @@ When the user asks things like:
 - "find hospitals nearby"
 - "hospitals around me"
 
+Main thing to be done is if the user has any symptoms the show the nearby best hospital for curing that symptom alond with helpline number of that hospital.
+
 Immediately call the tool to fetch their location automatically
 and return nearby hospitals as a human-readable result.
 
