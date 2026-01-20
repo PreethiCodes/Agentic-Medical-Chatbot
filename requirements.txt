@@ -1,9 +1,7 @@
 google-adk
 google-generativeai
 
-# --- OpenAI & Agents SDK ---
-openai>=1.6.0
-openai-agents>=0.1.0
+edge-tts
 
 # --- Core utilities ---
 python-dotenv
@@ -33,3 +31,7 @@ pytesseract
 # --- Optional helpers ---
 rich
 orjson
+
+# --- Web framework for frontend ---
+flask>=2.3.0
+flask-cors>=4.0.0
