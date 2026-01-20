@@ -1,13 +1,11 @@
 from pydantic import BaseModel
-from typing import List
-
+from typing import List, Dict, Any
 
 class EvidenceDoc(BaseModel):
+    source: str
     title: str
-    content: str
-    source: str = "local"
-
+    summary: str
+    url: str
 
 class KnowledgeResponse(BaseModel):
-    query: str
     evidence: List[EvidenceDoc]

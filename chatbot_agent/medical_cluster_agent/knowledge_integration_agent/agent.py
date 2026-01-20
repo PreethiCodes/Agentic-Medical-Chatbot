@@ -1,44 +1,104 @@
+
 from google.adk.agents.llm_agent import LlmAgent
-from .retriever import retrieve
+
 from .schemas import KnowledgeResponse, EvidenceDoc
-import json
+from .tools import (
+    search_openfda,
+    search_rxnav,
+    search_pubmed,
+    search_who_icd,
+    search_clinical_tables,
+)
 
-def knowledge_tool(query: str) -> str:
-    results = retrieve(query)
-
-    response = {
-        "query": query,
-        "evidence": results
+# ==========================================
+# PURE PYTHON KNOWLEDGE RETRIEVAL FUNCTION
+# ==========================================
+def retrieve_medical_knowledge(query: dict) -> dict:
+    """
+    query = {
+        "drugs": [...],
+        "suspected_conditions": [...]
     }
+    """
 
-    return json.dumps(response, indent=2)
+    evidence = []
 
+    # -----------------------------
+    # DRUG SOURCES
+    # -----------------------------
+    for drug in query.get("drugs", []):
+        for item in search_openfda(drug):
+            evidence.append(EvidenceDoc(
+                source="OpenFDA",
+                title=item["title"],
+                summary=item["summary"],
+                url=item["url"]
+            ))
+
+        for item in search_rxnav(drug):
+            evidence.append(EvidenceDoc(
+                source="RxNorm",
+                title=item["title"],
+                summary=item["summary"],
+                url=item["url"]
+            ))
+
+    # -----------------------------
+    # CONDITION SOURCES
+    # -----------------------------
+    for cond in query.get("suspected_conditions", []):
+        for item in search_pubmed(cond):
+            evidence.append(EvidenceDoc(
+                source="PubMed",
+                title=item["title"],
+                summary=item["summary"],
+                url=item["url"]
+            ))
+
+        for item in search_who_icd(cond):
+            evidence.append(EvidenceDoc(
+                source="WHO ICD-11",
+                title=item["title"],
+                summary=item["summary"],
+                url=item["url"]
+            ))
+
+        for item in search_clinical_tables(cond):
+            evidence.append(EvidenceDoc(
+                source="ClinicalTables",
+                title=item["title"],
+                summary=item["summary"],
+                url=item["url"]
+            ))
+
+    return KnowledgeResponse(evidence=evidence).dict()
+
+
+# ==========================================
+# AGENT
+# ==========================================
 root_agent = LlmAgent(
     name="knowledge_integration_agent",
-    model="gemini-2.5-flash",
-    description="""Retrieves and integrates medical evidence from knowledge base
-    You are a Knowledge Integration Agent which is used to retrieve and integrate medical evidence from knowledge base
+    model="gemini-2.5-flash-lite",
+    description="""
+You are a Medical Knowledge Integration Agent.
 
 Your job:
-- Accept a medical query or symptom description.
-- Call the knowledge_tool.
-- Return the tool result as-is.
-- DO NOT reason.
-- DO NOT summarize.
-- DO NOT modify.
+1. You will receive structured JSON like:
+   {
+     "drugs": [...],
+     "suspected_conditions": [...]
+   }
 
-Output format MUST be JSON:
+2. You MUST call the Python function:
+   retrieve_medical_knowledge(query)
 
-{
-  "query": "...",
-  "evidence": [
-    {
-      "id": "...",
-      "title": "...",
-      "content": "...",
-      "relevance_score": 0.0
-    }
-  ]
-}""",
-    tools=[knowledge_tool]
+3. You MUST return its output directly.
+
+RULES:
+- Do NOT hallucinate.
+- Do NOT invent medical facts.
+- Only return the function result.
+- Always return JSON.
+""",
 )
