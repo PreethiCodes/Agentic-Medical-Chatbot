@@ -120,7 +120,7 @@ class RiskDetectionAgent:
 # ----------------------------
 root_agent = LlmAgent(
     name="risk_detection_agent",
-    model="gemini-2.5-flash-lite",
+    model="gemini-2.0-flash",
     description="""
     Agent responsible for identifying safety risks in user messages.
     """,

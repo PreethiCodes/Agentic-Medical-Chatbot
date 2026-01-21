@@ -2,7 +2,7 @@ from google.adk.agents.llm_agent import LlmAgent
 
 root_agent = LlmAgent(
     name="guidance_composer_agent",
-    model="gemini-2.5-flash",
+    model="gemini-2.0-flash",
     description=(
         """
 You are the GUIDANCE COMPOSER AGENT.

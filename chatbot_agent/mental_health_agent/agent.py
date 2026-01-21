@@ -6,7 +6,7 @@ from .emotion_detection_agent import root_agent as emotion_detection_agent
 
 root_agent = LlmAgent(
     name="mental_health_root_agent",
-    model="gemini-2.5-flash-lite",
+    model="gemini-2.0-flash",
     description="""
 You are the Mental Health Orchestrator Agent.
 

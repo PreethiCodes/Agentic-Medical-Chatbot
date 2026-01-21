@@ -19,7 +19,7 @@ class OverconfidenceOutput(BaseModel):
 # ------------------------------
 root_agent = LlmAgent(
     name="overconfidence_guard_agent",
-    model="gemini-2.5-flash-lite",
+    model="gemini-2.0-flash",
     description="""
     Agent responsible for detecting overconfident responses in the medical chatbot.
     Triggers warnings or escalations if confidence exceeds defined thresholds.

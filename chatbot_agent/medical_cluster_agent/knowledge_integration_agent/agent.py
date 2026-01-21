@@ -79,7 +79,7 @@ def retrieve_medical_knowledge(query: dict) -> dict:
 # ==========================================
 root_agent = LlmAgent(
     name="knowledge_integration_agent",
-    model="gemini-2.5-flash-lite",
+    model="gemini-2.0-flash",
     description="""
 You are a Medical Knowledge Integration Agent.
 

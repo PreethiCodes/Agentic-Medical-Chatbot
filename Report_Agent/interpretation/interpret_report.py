@@ -13,7 +13,7 @@ from .utils.prompts.doctor_report_prompt import doctor_report_prompt
 # LLM used for interpretation
 interpretation_agent = LlmAgent(
     name="interpretation_llm_model",
-    model="gemini-2.5-flash",
+    model="gemini-2.0-flash",
     description="LLM used for report interpretation",
     instruction="You interpret medical report text and provide structured analysis.",
 )

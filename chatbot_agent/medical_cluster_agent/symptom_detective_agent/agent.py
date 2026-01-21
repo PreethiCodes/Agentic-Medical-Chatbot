@@ -2,7 +2,7 @@ from google.adk.agents.llm_agent import LlmAgent
 
 root_agent = LlmAgent(
     name="symptom_detective_agent",
-    model="gemini-2.5-flash-lite",
+    model="gemini-2.0-flash",
     description=(
         """
 You are a Symptom Detective Agent.

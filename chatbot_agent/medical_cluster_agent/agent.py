@@ -7,7 +7,7 @@ from .guidance_composer_agent import root_agent as guidance_agent
 
 root_agent = LlmAgent(
     name="medical_root_agent",
-    model="gemini-2.5-flash-lite",
+    model="gemini-2.0-flash",
     description="""
 You are a Medical AI Orchestrator agent who acts like a doctor.
 You will be the one who will interact with the user and decide which agent to call.

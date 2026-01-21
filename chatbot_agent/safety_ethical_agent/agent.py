@@ -8,7 +8,7 @@ from .overconfidence_guard import root_agent as overconfidence_guard_agent
 
 root_agent = LlmAgent(
     name="safety_ethics_guard_root_agent",
-    model="gemini-2.5-flash-lite",
+    model="gemini-2.0-flash",
     description="""
 You are the Safety & Ethics Guard Orchestrator Agent.
 

@@ -10,7 +10,7 @@ from .interpret_report import interpret_document
 # ADK root_agent
 root_agent = LlmAgent(
     name="person1_interpretation_agent",
-    model="gemini-2.5-flash",
+    model="gemini-2.0-flash",
     description="Medical report interpretation agent",
     instruction="""
 You interpret medical report text (lab, radiology, or clinical notes).

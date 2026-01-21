@@ -38,7 +38,7 @@ class MedicalSafetyOutput(BaseModel):
 # ---------------------------
 root_agent = LlmAgent(
     name="medical_safety_checker",
-    model="gemini-2.5-flash-lite",
+    model="gemini-2.0-flash",
     description="""
     Agent responsible for detecting unsafe or harmful medical content
     such as self-medication, incorrect dosage, diagnosis attempts,

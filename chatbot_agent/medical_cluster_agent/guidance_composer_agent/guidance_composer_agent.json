@@ -1,7 +1,7 @@
 {
   "name": "guidance_composer_agent",
   "description": "The Guidance Composer Agent provides safe, structured, patient-facing medical guidance based on the final diagnosis, confidence score, knowledge context, and red flags. Outputs JSON only, never asks questions, and ensures all guidance is medically responsible.",
-  "model": "gemini-2.5-flash",
+  "model": "gemini-2.0-flash",
   "python_module": "agent",
   "python_class": "guidance_composer_agent",
   "input_schema": "schema.GuidanceComposerOutput",
@@ -18,6 +18,11 @@
     "author": "AI Fusion Hackathon Team",
     "version": "1.0",
     "license": "MIT",
-    "tags": ["medical", "guidance", "patient_safety", "json_output"]
+    "tags": [
+      "medical",
+      "guidance",
+      "patient_safety",
+      "json_output"
+    ]
   }
 }

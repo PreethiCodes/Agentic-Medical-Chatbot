@@ -3,7 +3,7 @@ from .tools import get_user_address
 
 root_agent = LlmAgent(
     name="auto_location",
-    model="gemini-2.5-flash-lite",
+    model="gemini-2.0-flash",
     description="Agent that determines user location and shows nearby hospitals",
     instruction="""
 You are a location assistant.

@@ -2,7 +2,7 @@ from google.adk.agents.llm_agent import LlmAgent
 
 root_agent = LlmAgent(
     name="clinical_reasoning_agent",
-    model="gemini-2.5-flash-lite",
+    model="gemini-2.0-flash",
     description=(
        """ You are an Interactive Clinical Reasoning Agent who asks interactive questions and escalates emergencies
 

@@ -7,7 +7,7 @@ from .location.auto_location.agent import root_agent as location_agent
 
 root_agent = LlmAgent(
     name="agentic_medical_chatbot_root",
-    model="gemini-2.5-flash-lite",
+    model="gemini-2.0-flash",
     description="""
 You are the MAIN ORCHESTRATOR of an Agentic Medical Assistant chatbot system.
 You should identify the user query and finds out which two agent is to be called whether medical_cluster_agent(for medical purpose) or the mental_health_agent(for mental physcological problems).

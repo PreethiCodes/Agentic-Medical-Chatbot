@@ -22,7 +22,7 @@ class EscalationOutput(BaseModel):
 # Create the Escalation Manager Agent
 root_agent = LlmAgent(
     name="escalation_manager_agent",
-    model="gemini-2.5-flash-lite",
+    model="gemini-2.0-flash",
     description="""
     Agent responsible for determining the correct medical escalation level
     based on risk detection, safety analysis, confidence checks, and crisis signals.
