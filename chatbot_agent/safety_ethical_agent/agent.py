@@ -93,13 +93,56 @@ Output format:
 
 {
   "safety_report": {
-    "medical_safety_checker": { ... },
-    "risk_detection_agent": { ... },
-    "escalation_manager": { ... },
-    "overconfidence_guard": { ... }
+    "input_summary": "",
+    "detected_domains": [],
+    "overall_risk_level": "",
+    "requires_immediate_action": false,
+
+    "module_results": {
+      "medical_safety": {
+        "flags": [],
+        "risk_level": "",
+        "evidence": "",
+        "policy_violation": false,
+        "should_block": false
+      },
+      "mental_health_safety": {
+        "flags": [],
+        "risk_level": "",
+        "evidence": "",
+        "crisis_detected": false,
+        "should_escalate": false
+      },
+      "self_harm_safety": {
+        "flags": [],
+        "risk_level": "",
+        "evidence": "",
+        "should_intervene": false
+      },
+      "content_safety": {
+        "flags": [],
+        "risk_level": "",
+        "policy_violation": false
+      }
+    },
+
+    "escalation_decision": {
+      "escalation_required": false,
+      "escalation_type": "",
+      "priority": "",
+      "handoff_target": "",
+      "reason": ""
+    }
   },
-  "final_safe_output": "string"
+
+  "response_policy": {
+    "allow_normal_response": true,
+    "must_refuse": false,
+    "must_escalate": false,
+    "must_use_safe_completion": false
+  }
 }
+
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 INTER-AGENT RELATIONSHIP RULES

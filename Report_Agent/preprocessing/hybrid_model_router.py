@@ -21,7 +21,7 @@ def route_and_process(image: Any, page_index: int = 0) -> Dict[str, Any]:
 
     use_big_model = confidence < OCR_CONF_THRESHOLD or _looks_like_scan(text)
 
-    model = "gemini-2.0-flash" if use_big_model else "gemini-2.0-flash"
+    model = "gemini-2.5-flash" if use_big_model else "gemini-2.0-flash"
 
 
     vision_result = analyze_image_with_vision(

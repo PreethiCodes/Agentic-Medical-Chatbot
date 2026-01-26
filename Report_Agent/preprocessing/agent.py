@@ -23,7 +23,7 @@ class Person1PreprocessingAgent:
 
 root_agent = LlmAgent(
     name="person1_preprocessing_agent",
-    model="gemini-2.0-flash",
+    model="gemini-2.5-flash",
     description="Medical document preprocessing agent",
     instruction="""
 You accept medical files (PDF, image, DICOM).
