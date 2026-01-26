@@ -10,7 +10,12 @@ from flask_cors import CORS
 
 import edge_tts
 
+from dotenv import load_dotenv
+
 from google.adk.runners import Runner, InMemorySessionService, types
+
+# Load environment variables from a local .env (if present)
+load_dotenv()
 
 # -------------------------
 # IMPORT YOUR AGENTS
@@ -165,6 +170,27 @@ def chat():
             "audio_url": f"/tts_audio/{audio_file}"
         })
 
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({"success": False, "error": str(e)}), 500
+
+# -------------------------
+# RESET CHAT SESSION
+# -------------------------
+@app.route('/api/reset', methods=['POST'])
+def reset_chat():
+    """
+    Clears the stored session_id for a user so the next /api/chat
+    call starts a fresh conversation context.
+    """
+    try:
+        data = request.json or {}
+        user_id = data.get('user_id', 'default_user')
+        if user_id in USER_SESSIONS:
+            del USER_SESSIONS[user_id]
+        # Create a new session immediately so clients can confirm reset worked
+        new_session_id = get_or_create_session(user_id)
+        return jsonify({"success": True, "user_id": user_id, "session_id": new_session_id})
     except Exception as e:
         traceback.print_exc()
         return jsonify({"success": False, "error": str(e)}), 500
