@@ -169,7 +169,6 @@ You MUST include the COMPLETE JSON including:
 - next_steps
 - condition_summary
 - self_care_guidance
-- medicine_name
 - medication_guidance
 - lifestyle_advice
 - when_to_consult_doctor
@@ -179,6 +178,15 @@ You MUST include the COMPLETE JSON including:
 Additionally, the final JSON MUST include:
 
 - explainability
+
+The medical JSON MUST follow these type rules (ABSOLUTE):
+- status: "ok" | "need_more_info" | "emergency" (no other values)
+- confidence: number between 0.0 and 1.0 (not strings like "high"/"moderate")
+- symptoms: list of objects like {"name","duration","severity","notes"} (not list of strings)
+- possible_conditions: list of objects like {"condition","probability","reason"} (not list of strings)
+- red_flags: list of strings (not boolean true/false)
+- medication_guidance: list of objects like {"name","note"} (not a single string)
+- self_care_guidance/lifestyle_advice/when_to_consult_doctor/emergency_warning_signs/next_steps: arrays of strings
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 WHEN MENTAL HEALTH AGENT IS USED

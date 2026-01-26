@@ -4,6 +4,7 @@ from .symptom_detective_agent import root_agent as symptom_agent
 from .knowledge_integration_agent import root_agent as knowledge_agent
 from .clinical_reasoning_agent import root_agent as clinical_agent
 from .guidance_composer_agent import root_agent as guidance_agent
+from .schemas import MedicalClusterOutput
 
 root_agent = LlmAgent(
     name="medical_root_agent",
@@ -83,19 +84,24 @@ You MUST output ONLY this JSON structure:
 
 {
   "status": "ok" | "need_more_info" | "emergency",
-  "confidence": number,
-  "symptoms": {...},
-  "possible_conditions": [...],
-  "red_flags": true/false,
+  "confidence": number between 0.0 and 1.0,
+  "symptoms": [
+    {"name": "string", "duration": "string", "severity": "mild|moderate|severe|unknown", "notes": "string"}
+  ],
+  "possible_conditions": [
+    {"condition": "string", "probability": 0.0, "reason": "string"}
+  ],
+  "red_flags": ["string"],
   "recommendation": "string",
   "next_steps": ["string"],
   "condition_summary": "string",
   "self_care_guidance": ["string"],
-  "medicine_name": "string",
-  "medication_guidance": "string",
-  "lifestyle_advice": "string",
-  "when_to_consult_doctor": "string",
-  "emergency_warning_signs": "string",
+  "medication_guidance": [
+    {"name": "string", "note": "string"}
+  ],
+  "lifestyle_advice": ["string"],
+  "when_to_consult_doctor": ["string"],
+  "emergency_warning_signs": ["string"],
   "disclaimer": "string",
   "explainability": {
     "summary": "string",
@@ -135,4 +141,6 @@ If any agent fails or returns empty:
 You are an ORCHESTRATOR, not a doctor.
 Your job is to CONTROL AGENTS, not to think yourself.
 """
+,
+output_schema=MedicalClusterOutput
 )
