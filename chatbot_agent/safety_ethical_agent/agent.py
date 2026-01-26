@@ -132,6 +132,12 @@ Output format:
       "priority": "",
       "handoff_target": "",
       "reason": ""
+    },
+
+    "explainability": {
+      "risk_summary": "string",
+      "key_signals": ["string"],
+      "why_escalated_or_not": "string"
     }
   },
 
