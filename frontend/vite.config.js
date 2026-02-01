@@ -1,16 +1,26 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
+// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'http://127.0.0.1:5001',
         changeOrigin: true,
         secure: false,
       },
-    },
-  },
+      '/tts_audio': {
+        target: 'http://127.0.0.1:5001',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/uploads': {
+        target: 'http://127.0.0.1:5001',
+        changeOrigin: true,
+        secure: false,
+      }
+    }
+  }
 })
